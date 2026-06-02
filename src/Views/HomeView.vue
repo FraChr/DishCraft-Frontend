@@ -1,9 +1,12 @@
 ﻿<script setup lang="ts">
 
+import RecipeView from '@/Views/RecipeView.vue'
+import Header from '@/Components/Header.vue'
 </script>
 
 <template>
-  <h1>HL:G:LKHSDGOI:HEWIG</h1>
+<!--  <Header />-->
+  <RecipeView />
 </template>
 
 <style scoped>

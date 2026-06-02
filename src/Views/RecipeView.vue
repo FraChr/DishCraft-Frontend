@@ -1,10 +1,12 @@
 ﻿<script setup lang="ts">
-
-import Recipes from '@/Components/Recipes.vue'
+  import Recipes from '@/Components/Recipes.vue'
+  import Header from '@/Components/Header.vue'
 </script>
 
 <template>
-  <Recipes />
+  <div>
+    <Recipes />
+  </div>
 </template>
 
 <style scoped>

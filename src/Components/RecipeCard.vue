@@ -1,37 +1,38 @@
 ﻿<script setup lang="ts">
   import type { Recipe } from '@/Types/Recipe.ts'
 
-  defineProps<{
+ /* defineProps<{
     recipe: Recipe;
-  }>();
+  }>();*/
+
+  defineProps<{ recipe: any }>()
+  const emit = defineEmits(['click'])
 </script>
 
 <template>
-  <div class="card">
-    <h2 class="card-header">{{ recipe.name }}</h2>
-<!--    <p>
-      Difficulty:
-      {{ recipe.difficulty }}
-    </p>-->
-<!--    <ul>
-      <li v-for="tag in recipe.tags" :key="recipe.slug">
-        {{tag}}
-      </li>
-    </ul>-->
+  <article
+    class="card"
+    @click="emit('click')"
+    tabindex="0"
+    @keydown.enter="emit('click')"
+    @keydown.space.prevent="emit('click')"
+    aria-label="Recipe: {{ recipe.name }}"
+  >
+    <header class="card-header">
+      <h2>{{ recipe.name }}</h2>
+    </header>
 
+    <section>
     <dl>
       <div class="info-item">
         <dt>Difficulty</dt>
         <dd>{{ recipe.difficulty }}</dd>
       </div>
+
       <div class="info-item">
-<!--        <dt>Tags</dt>-->
         <dt>Allergens</dt>
         <dd>
           <ul>
-<!--            <li v-for="tag in recipe.tags" :key="recipe.slug">
-              {{tag}}
-            </li>-->
             <li v-for="allergen in recipe.allergens" :key="recipe.slug">
               {{allergen}}
             </li>
@@ -39,7 +40,8 @@
         </dd>
       </div>
     </dl>
-  </div>
+    </section>
+  </article>
 </template>
 
 <style scoped>
@@ -48,6 +50,12 @@
     display: flex;
     justify-content: space-between;
   }
+
+  .info-item dd {
+    margin: 0;
+    text-align: right;
+  }
+
   .card-header {
     display: flex;
     justify-content: center;

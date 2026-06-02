@@ -4,6 +4,7 @@
   import RecipeCard from '@/Components/RecipeCard.vue'
   import { useRoute, useRouter } from 'vue-router'
   import RecipeDetails from '@/Components/RecipeDetails.vue'
+  import SearchBar from '@/Components/SearchBar.vue'
 
   const router = useRouter();
   const route = useRoute();
@@ -27,22 +28,32 @@
 
 <template>
   <template  v-if="recipes.items">
-    <div v-if="!selectedRecipe" class="layout">
-      <RecipeCard @click="() => recipeDetails(r.slug)" v-for="r in recipes.items.value"
-                  :key="r.slug"
-                  :recipe="r"/>
-    </div>
+    <main v-if="!selectedRecipe" >
+      <SearchBar />
+      <section class="layout">
+        <RecipeCard @click="() => recipeDetails(r.slug)" v-for="r in recipes.items.value"
+                    :key="r.slug"
+                    :recipe="r"/>
+      </section>
+    </main>
 
-    <div v-else>
+    <article v-else>
       <RecipeDetails :recipe="selectedRecipe"/>
-    </div>
+    </article>
   </template>
 </template>
 
 <style scoped>
   .layout {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(max(300px, 20vw), 1fr));
     gap: 1rem;
+    container-type: inline-size;
+  }
+  @media (min-width: 1249px) {
+    .layout {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
   }
 </style>

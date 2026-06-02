@@ -6,8 +6,15 @@
   difficulty: string;
   instructions: RecipeSteps[];
   tags: RecipeTags[];
-  ingredients: [];
+  ingredients: RecipeIngredients[];
   allergens: RecipeAllergens[];
+}
+
+
+interface RecipeIngredients {
+  ingredient: string;
+  amount: number;
+  unit: string;
 }
 
 interface RecipeSteps {

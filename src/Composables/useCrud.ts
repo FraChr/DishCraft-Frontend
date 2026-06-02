@@ -30,13 +30,10 @@ export function useCrud(route: string) {
     }
   };
 
-
-
   return {
     item,
     items,
     getSingle,
     getAll,
   }
-
 }
