@@ -1,11 +1,10 @@
 ﻿<script setup lang="ts">
   import type { Recipe } from '@/Types/Recipe.ts'
 
- /* defineProps<{
+  defineProps<{
     recipe: Recipe;
-  }>();*/
-
-  defineProps<{ recipe: any }>()
+  }>();
+  
   const emit = defineEmits(['click'])
 </script>
 

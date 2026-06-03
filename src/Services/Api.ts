@@ -9,6 +9,6 @@ const apiClient = axios.create({
 });
 
 export const createCrudService = (route: string) => ({
-  list: (params: Record<string, any>) => apiClient.get(`/${route}`, params),
+  getList: (params: Record<string, any>) => apiClient.get(`/${route}`, params),
   getBySlug: (slug: string) => apiClient.get(`/${route}/${slug}`),
 });

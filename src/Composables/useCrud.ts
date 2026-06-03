@@ -11,7 +11,7 @@ export function useCrud(route: string) {
 
   const getAll = async () => {
     try {
-      const response = await service.list({
+      const response = await service.getList({
 
       });
       items.value = response.data;
