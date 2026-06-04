@@ -1,6 +1,6 @@
 ﻿<script setup lang="ts">
   import { crudFactory } from '@/Services/CrudFactory.ts'
-  import { computed, onMounted, ref } from 'vue'
+  import { computed, onMounted } from 'vue'
   import RecipeCard from '@/Components/RecipeCard.vue'
   import { useRoute, useRouter } from 'vue-router'
   import RecipeDetails from '@/Components/RecipeDetails.vue'

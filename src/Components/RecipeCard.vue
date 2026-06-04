@@ -4,7 +4,7 @@
   defineProps<{
     recipe: Recipe;
   }>();
-  
+
   const emit = defineEmits(['click'])
 </script>
 

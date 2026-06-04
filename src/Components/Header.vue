@@ -8,9 +8,9 @@ import SearchBar from '@/Components/SearchBar.vue'
     <p>
       Testing
     </p>
-    <div class="search-bar-container">
+<!--    <div class="search-bar-container">
       <SearchBar class="search-bar-container"/>
-    </div>
+    </div>-->
   </header>
 </template>
 
