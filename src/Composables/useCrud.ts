@@ -2,20 +2,20 @@
 import { ref } from 'vue'
 import type {Recipe} from '@/Types/Recipe.ts'
 
-export function useCrud(route: string) {
+export function useCrud<T>(route: string) {
 
   const service = createCrudService(route);
 
-  const item = ref<Recipe | null>(null);
-  const items = ref<Recipe[]>([]);
+  const item = ref<T | null>(null);
+  const items = ref<T[]>([]);
 
-  const getAll = async () => {
+  const getAll = async (params: Record<string, any> = {}) => {
     try {
-      const response = await service.getList({
+      /*console.log('Params recived:', params);
+      console.log('Params entries:', Object.entries(params));*/
 
-      });
+      const response = await service.getList(params);
       items.value = response.data;
-
     } catch (error) {
       console.error(`Error fetching data ${error}`);
     }
