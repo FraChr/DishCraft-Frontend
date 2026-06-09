@@ -46,9 +46,16 @@
         params.allergen = allergen[0];
 
       if(tags && tags.length > 0)
-        params.tags = tags.join(',');
+        params.tags = tags.join('%20');
 
       console.log('All filters:', params);
+
+      const enc = router.currentRoute.value.fullPath
+
+
+
+      await router.replace({query: params})
+
       await recipes.getAll(params);
     });
 

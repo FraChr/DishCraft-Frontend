@@ -9,13 +9,13 @@ const apiClient = axios.create({
 });
 
 
-/*apiClient.interceptors.request.use((config) => {
+apiClient.interceptors.request.use((config) => {
   console.log(`[${config.method?.toUpperCase()}] ${config.url}`);
   console.log('Params:', config.params);
   console.log('Full URL:', config.url + (config.params ? `?${new URLSearchParams(config.params).toString()}` : ''));
 
   return config;
-});*/
+});
 
 export const createCrudService = (route: string) => ({
   getList: (params: Record<string, any> = {}) => apiClient.get(`/${route}`, { params }),
