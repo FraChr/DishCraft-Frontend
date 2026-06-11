@@ -1,6 +1,6 @@
 ﻿<script setup lang="ts">
-  import Recipes from '@/Components/Recipes.vue'
-  import Header from '@/Components/Header.vue'
+import Recipes from '@/Components/Recipes.vue'
+import Header from '@/Components/Header.vue'
 </script>
 
 <template>
@@ -9,6 +9,4 @@
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

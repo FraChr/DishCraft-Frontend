@@ -7,4 +7,4 @@ export const crudFactory = {
   useLookupTags: () => useCrud<Lookup>('lookup/tags'),
   useLookupDifficulties: () => useCrud<Lookup>('lookup/difficulties'),
   useLookupAllergens: () => useCrud<Lookup>('lookup/allergens'),
-};
+}
