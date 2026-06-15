@@ -6,15 +6,19 @@ const apiClient = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
+  paramsSerializer: {
+    indexes: null
+  }
 });
 
 apiClient.interceptors.request.use((config) => {
-  console.log(`[${config.method?.toUpperCase()}] ${config.url}`)
-  console.log('Params:', config.params)
+  console.log(`[${config.method?.toUpperCase()}] ${config.url}`);
+  console.log('Params:', config.params);
+
   console.log(
     'Full URL:',
     config.url + (config.params ? `?${new URLSearchParams(config.params).toString()}` : ''),
-  )
+  );
 
   return config
 });
@@ -22,4 +26,4 @@ apiClient.interceptors.request.use((config) => {
 export const createCrudService = (route: string) => ({
   getList: (params: Record<string, any> = {}) => apiClient.get(`/${route}`, { params }),
   getBySlug: (slug: string) => apiClient.get(`/${route}/${slug}`),
-});
+})
