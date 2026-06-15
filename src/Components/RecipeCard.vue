@@ -3,9 +3,9 @@ import type { Recipe } from '@/Types/Recipe.ts'
 
 defineProps<{
   recipe: Recipe
-}>()
+}>();
 
-const emit = defineEmits(['click'])
+const emit = defineEmits(['click']);
 </script>
 
 <template>
@@ -38,6 +38,18 @@ const emit = defineEmits(['click'])
             </ul>
           </dd>
         </div>
+
+        <div class="info-item">
+          <dt>Tags</dt>
+          <dd>
+            <ul>
+              <li v-for="tag in recipe.tags" :key="recipe.slug">
+                {{ tag }}
+              </li>
+            </ul>
+          </dd>
+        </div>
+
       </dl>
     </section>
   </article>

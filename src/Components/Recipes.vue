@@ -39,16 +39,15 @@ watch([difficultyFilter, allergensFilter, tagFilter], async (values) => {
 
   const params: Record<string, any> = {}
 
-  if (difficulty && difficulty.length > 0) params.difficulty = difficulty[0]
+  if (difficulty && difficulty.length > 0) params.difficulty = difficulty[0];
 
-  if (allergen && allergen.length > 0) params.allergen = allergen[0]
+  if (allergen && allergen.length > 0) params.allergens = allergen;
 
-  if (tags && tags.length > 0) params.tags = tags.join(',')
+  if (tags && tags.length > 0) params.tags = tags;
 
   await recipes.getAll(params)
 
   await router.replace(recipes.url.value)
-
 });
 
 
@@ -86,7 +85,7 @@ onMounted(async () => {
           v-model="tagFilter"
         />
         <Filter
-          :multiple="false"
+          :multiple="true"
           :filter-type="'allergens'"
           :options="lookupAllergens.items.value"
           v-model="allergensFilter"
