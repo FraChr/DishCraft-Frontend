@@ -20,6 +20,7 @@ const lookupDifficulties = crudFactory.useLookupDifficulties()
 const difficultyFilter = ref<string[]>([]);
 const tagFilter = ref<string[]>([]);
 const allergensFilter = ref<string[]>([]);
+const searchTerm = ref<string>('');
 
 const slug = computed(() => route.params.slug as string | undefined);
 
@@ -35,9 +36,9 @@ const recipeDetails = (slug: string) => {
 }
 
 watch([difficultyFilter, allergensFilter, tagFilter], async (values) => {
-  const [difficulty, allergen, tags] = values
+  /*const [difficulty, allergen, tags] = values*/
 
-  const params: Record<string, any> = {}
+  /*const params: Record<string, any> = {}
 
   if (difficulty && difficulty.length > 0) params.difficulty = difficulty[0];
 
@@ -47,9 +48,27 @@ watch([difficultyFilter, allergensFilter, tagFilter], async (values) => {
 
   await recipes.getAll(params)
 
-  await router.replace(recipes.url.value)
+  await router.replace(recipes.url.value)*/
+  await triggerSearch();
 });
 
+const handleSearch = async (value: string) => {
+  searchTerm.value = value;
+  console.log('searchTerm: ', searchTerm.value);
+  await triggerSearch();
+}
+
+const triggerSearch = async () => {
+  const params: Record<string, any> = {};
+
+  if(searchTerm.value) params.searchTerm = searchTerm.value;
+  if(difficultyFilter.value?.length) params.difficulty = difficultyFilter.value;
+  if(allergensFilter.value?.length) params.allergens = allergensFilter.value;
+  if(tagFilter.value?.length) params.tags = tagFilter.value;
+
+  await recipes.getAll(params);
+  await router.replace(recipes.url.value);
+}
 
 
 const showPopup = () => {
@@ -67,7 +86,7 @@ onMounted(async () => {
 <template>
   <template v-if="recipes.items">
     <main v-if="!selectedRecipe">
-      <SearchBar />
+      <SearchBar v-model="searchTerm" @search="handleSearch" />
       <button @click="showPopup">
         <span v-html="filterIcon"></span>
       </button>

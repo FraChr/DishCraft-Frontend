@@ -12,7 +12,9 @@ export function useCrud<T>(route: string) {
   const getAll = async (params: Record<string, any> = {}) => {
     try {
       const queryString = new URLSearchParams(params).toString()
-      url.value = queryString ? `${route}?${queryString}` : route
+      url.value = queryString ? `${route}?${queryString}` : route;
+
+      console.log('search term in crud ', params)
 
       const response = await service.getList(params)
       items.value = response.data

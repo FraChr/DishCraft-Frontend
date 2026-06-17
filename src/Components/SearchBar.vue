@@ -1,9 +1,22 @@
-﻿<script setup lang="ts"></script>
+﻿<script setup lang="ts">
+  import { ref } from 'vue'
+
+  const model = defineModel<string>({default: ''});
+  const emit = defineEmits<{search: [value: string]}>()
+  const search = () => {
+    emit('search', model.value)
+  }
+
+</script>
 
 <template>
   <div class="searchBar-container">
-    <input placeholder="TESTING" />
-    <button>search</button>
+    <input
+      v-model="model"
+      placeholder="TESTING"
+      @keyup.enter="search"
+    />
+    <button @click="search">search</button>
   </div>
 </template>
 
