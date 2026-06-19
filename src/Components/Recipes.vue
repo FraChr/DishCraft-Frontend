@@ -35,20 +35,7 @@ const recipeDetails = (slug: string) => {
   router.push(`/recipes/${slug}`)
 }
 
-watch([difficultyFilter, allergensFilter, tagFilter], async (values) => {
-  /*const [difficulty, allergen, tags] = values*/
-
-  /*const params: Record<string, any> = {}
-
-  if (difficulty && difficulty.length > 0) params.difficulty = difficulty[0];
-
-  if (allergen && allergen.length > 0) params.allergens = allergen;
-
-  if (tags && tags.length > 0) params.tags = tags;
-
-  await recipes.getAll(params)
-
-  await router.replace(recipes.url.value)*/
+watch([difficultyFilter, allergensFilter, tagFilter], async () => {
   await triggerSearch();
 });
 

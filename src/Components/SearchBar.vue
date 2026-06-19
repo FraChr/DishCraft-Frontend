@@ -13,7 +13,7 @@
   <div class="searchBar-container">
     <input
       v-model="model"
-      placeholder="TESTING"
+      placeholder="Search by name or ingredient"
       @keyup.enter="search"
     />
     <button @click="search">search</button>
