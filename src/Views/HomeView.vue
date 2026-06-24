@@ -15,18 +15,6 @@ const router = useRouter();
     <div class="home-item">
       <h1>TESTING 1</h1>
     </div>
-    <div class="home-item">
-      <h1>TESTING 2</h1>
-    </div>
-    <div class="home-item">
-      <h1>TESTING 3</h1>
-    </div>
-    <div class="home-item">
-      <h1>TESTING 4</h1>
-    </div>
-    <div class="home-item">
-      <h1>TESTING 5</h1>
-    </div>
   </div>
 
   <button @click="navRecipes">Recipes</button>

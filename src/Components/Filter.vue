@@ -6,7 +6,7 @@ const props = defineProps<{
   options: Lookup[]
   filterType: string
   multiple: boolean
-}>()
+}>();
 
 const selected = defineModel<string[]>()
 const getSelected = () => selected.value ?? []
@@ -80,7 +80,6 @@ const clearAll = () => {
 }
 
 .filter-wrapper {
-  /*border: 0.2rem solid black;*/
   border-top: 0.2rem solid black;
   border-left: 0.2rem solid black;
   border-right: 0.2rem solid black;

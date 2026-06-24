@@ -8,14 +8,13 @@ import SearchBar from '@/Components/SearchBar.vue'
 import Filter from '@/Components/Filter.vue'
 import Popup from '@/Components/Popup.vue'
 import { filterIcon } from '@/Assets/svg icons/icons.ts'
+import { useLookupsStore } from '@/Stores/lookups.ts'
 
 const router = useRouter()
 const route = useRoute()
 const recipes = crudFactory.useRecipe()
 
-const lookupTags = crudFactory.useLookupTags()
-const lookupAllergens = crudFactory.useLookupAllergens()
-const lookupDifficulties = crudFactory.useLookupDifficulties()
+const lookups = useLookupsStore();
 
 const difficultyFilter = ref<string[]>([]);
 const tagFilter = ref<string[]>([]);
@@ -62,11 +61,13 @@ const showPopup = () => {
   activeFilter.value = !activeFilter.value
 }
 
+const navCreate = () => {
+  router.push('/recipes/create')
+}
+
 onMounted(async () => {
   await recipes.getAll()
-  await lookupTags.getAll()
-  await lookupAllergens.getAll()
-  await lookupDifficulties.getAll()
+  await lookups.loadAll()
 });
 </script>
 
@@ -81,22 +82,25 @@ onMounted(async () => {
         <Filter
           :multiple="false"
           :filter-type="'difficulty'"
-          :options="lookupDifficulties.items.value"
+          :options="lookups.difficulties"
           v-model="difficultyFilter"
         />
         <Filter
           :multiple="true"
           :filter-type="'tags'"
-          :options="lookupTags.items.value"
+          :options="lookups.tags"
           v-model="tagFilter"
         />
         <Filter
           :multiple="true"
           :filter-type="'allergens'"
-          :options="lookupAllergens.items.value"
+          :options="lookups.allergens"
           v-model="allergensFilter"
         />
       </Popup>
+
+      <button @click="navCreate">Add Recipe</button>
+
       <section class="layout">
         <RecipeCard
           @click="() => recipeDetails(r.slug)"
